@@ -2,6 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import Book from './Book.js'
 
 class BooksApp extends React.Component {
   state = {
@@ -41,28 +42,28 @@ class BooksApp extends React.Component {
     })
   }
 
-  addBook = (book, index, searchedBooks = false) => {
-    return (
-      <li key={index}>
-        <div className="book">
-          <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("' + book.imageLinks.thumbnail + '")' }}></div>
-            <div className="book-shelf-changer">
-              <select onChange={e => this.updateBook(e, index, searchedBooks)} value={searchedBooks ? this.state.searchedBooks[index].shelf : this.state.books[index].shelf}>
-                <option value="move" disabled>Move to...</option>
-                <option value="currentlyReading">Currently Reading</option>
-                <option value="wantToRead">Want to Read</option>
-                <option value="read">Read</option>
-                <option value="none">None</option>
-              </select>
-            </div>
-          </div>
-          <div className="book-title">{book.title}</div>
-          <div className="book-authors">{book.authors[0]}</div>
-        </div>
-      </li>
-    )
-  }
+  // addBook = (book, index, searchedBooks = false) => {
+  //   return (
+  //     <li key={index}>
+  //       <div className="book">
+  //         <div className="book-top">
+  //           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("' + book.imageLinks.thumbnail + '")' }}></div>
+  //           <div className="book-shelf-changer">
+  //             <select onChange={e => this.updateBook(e, index, searchedBooks)} value={searchedBooks ? this.state.searchedBooks[index].shelf : this.state.books[index].shelf}>
+  //               <option value="move" disabled>Move to...</option>
+  //               <option value="currentlyReading">Currently Reading</option>
+  //               <option value="wantToRead">Want to Read</option>
+  //               <option value="read">Read</option>
+  //               <option value="none">None</option>
+  //             </select>
+  //           </div>
+  //         </div>
+  //         <div className="book-title">{book.title}</div>
+  //         <div className="book-authors">{book.authors[0]}</div>
+  //       </div>
+  //     </li>
+  //   )
+  // }
 
   searchBook = (e) => {
     BooksAPI.search(e.target.value).then(books => {
@@ -83,7 +84,7 @@ class BooksApp extends React.Component {
   searchPage = () => {
     const searchedBooksList = [];
     this.state.searchedBooks.forEach((book, index) => {
-      searchedBooksList.push(this.addBook(book, index, true))
+      searchedBooksList.push(<Book book={book} index={index} books={this.state.books} stateSearchedBooks={this.state.searchedBooks} updateBook={this.updateBook} searchedBooks={true}/>)
     })
     return (
       <div className="search-books">
@@ -115,16 +116,15 @@ class BooksApp extends React.Component {
     const wantToRead = [];
     const read = [];
 
-    console.log(this.state.searchedBooks)
     this.state.books.forEach((book, index) => {
       if(book.shelf === "currentlyReading"){
-        currentlyReading.push(this.addBook(book, index))
+        currentlyReading.push(<Book book={book} index={index} books={this.state.books} stateSearchedBooks={this.state.searchedBooks} updateBook={this.updateBook} />)
       }
       if(book.shelf === "wantToRead"){
-        wantToRead.push(this.addBook(book, index))
+        wantToRead.push(<Book book={book} index={index} books={this.state.books} stateSearchedBooks={this.state.searchedBooks} updateBook={this.updateBook} />)
       }
       if(book.shelf === "read"){
-        read.push(this.addBook(book, index))
+        read.push(<Book book={book} index={index} books={this.state.books} stateSearchedBooks={this.state.searchedBooks} updateBook={this.updateBook} />)
       }
     })
     return (
