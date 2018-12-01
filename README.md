@@ -6,8 +6,9 @@ This is the starter template for the final assessment project for Udacity's Fron
 
 To get started:
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+* Git clone https://github.com/ondinafrate/reactnd-project-myreads-starter.git
+* Install all project dependencies with `npm install`
+* Start the development server with `npm start`
 
 ## How to run the app
 
