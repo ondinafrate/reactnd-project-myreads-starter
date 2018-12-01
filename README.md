@@ -1,15 +1,29 @@
 # My Book Reads Project
 
-This is the starter template for the final assessment project for Udacity's Front-end Developer scholarship course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
-
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+This is the starter template for the final assessment project for Udacity's Front-end Developer scholarship course. The app gives the user a chance to add and change the books he/she loves and which ones he/she wants to read next.
 
 ## How to run the app
 
-To get started developing right away:
+To get started:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+
+## How to run the app
+
+The main page shows 3 shelves for books.
+
+The main page shows a control that allows users to move books between shelves. The control should be tied to each book instance.
+
+When the browser is refreshed, the same information is displayed on the page.
+
+## Search
+
+The search page has a search input field. As the user types into the search field, books that match the query are displayed on the page.
+ 
+Search results on the search page allow the user to select “currently reading”, “want to read”, or “read” to place the book in a certain shelf.
+ 
+When an item is categorized on the search page, and the user navigates to the main page, it appears on that shelf in the main page.
 
 ## What You're Getting
 ```bash
